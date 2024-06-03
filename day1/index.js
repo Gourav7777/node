@@ -5,6 +5,7 @@ const userRoute = require("./routes/user.routes");
 const session = require("express-session");
 const localStrategyInitializer = require("./middleware/userValidate");
 const passport = require("passport");
+const productRoute = require("./routes/product.routes");
 
 
 const app = express()
@@ -21,13 +22,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/userRoute", userRoute)
+app.use("/product",  productRoute)
 app.set("view engine", "ejs")
 app.set("views", "./views")
 
 app.get("/",(req,res)=>{
   
   res.render("index")
-  // res.send("welcome here ")
+
 })
 
 

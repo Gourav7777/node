@@ -1,6 +1,7 @@
 const User = require("../models/user.model")
 const bcrypt = require("bcrypt");
 const sendMail = require("../service/mail");
+const Product = require("../models/product");
 
 const handlePost = async(req,res)=>{
   
@@ -23,7 +24,7 @@ const handlePost = async(req,res)=>{
 
 const handleGet = async (req, res) => {
     try {
-      let users = await User.findAll();
+      let users = await User.findAll({include:Product});
   
       res.send(users);
     } catch (error) {
